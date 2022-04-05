@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>REST APIを呼ぶ</title>
+        <script>
+            function greeting() {
+                const name = document.getElementById("name").value
+                const API_URL = `http://192.168.1.24:8080/greeting?name=${name}`
+
+                const request = new XMLHttpRequest()
+                request.open('GET', API_URL, true)
+
+                request.onload = function () {
+                    const responseObject = JSON.parse(this.response)
+                    document.getElementById("message").innerText = responseObject.content
+                }
+                request.send()
+            }
+        </script>
+    </head>
+    <body>
+        Name：<input id="name" /><br />
+        <button onclick="greeting()">Greeting</button>
+        <div></div><p id="message"></p></div>
+    </body>
+</html>
